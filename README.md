@@ -31,6 +31,10 @@ endpoint с примитивной обработкой ошибок и т.п. (
 
     python manage.py test jsonrpc_app.tests.jsonprc_method_test
   </p>
+  <p>Запуск тестов для тестирования представления с использованием SSL.
+
+    python manage.py test jsonrpc_ui.tests.jsonrpc_view_test
+  </p>
 </details>
 
 <details>
@@ -41,3 +45,58 @@ endpoint с примитивной обработкой ошибок и т.п. (
     python manage.py runserver
   </p>
 </details>
+
+
+# Запуск проекта локально
+
+1. Клонировать проект:
+    ```
+    git clone https://github.com/EchoFoe/kualiks_test.git
+    ```
+2. Создайте виртуальное окружение в корне проекта (зависит от вашей ОС) и установите зависимости
+    ```
+    pip install -r requirements.txt
+    ```
+3. Создайте в корне проекта файл `.env` (использует python-dotenv) и укажите свои конфиги
+    ```
+    SECRET_KEY=your_django_secret_key
+    TEST_API_URL=https://slb.medv.ru/api/v2/
+    CLIENT_2024_TEST_KEY=your_client_key
+    CLIENT_2024_TEST_CRT=your_crt
+   ```
+   #### (!) - Я скинул настройки для сертификата и ключа Сирарпи, можно просто скопировать и вставить
+
+4. Произведите миграции:
+    ```
+    python manage.py migrate 
+    ```
+
+5. Запустить сервер разработки:
+    ```
+    python manage.py runserver 
+    ```
+   
+На интерфейсе заполните поле "метод". Если Вы увидите что-то типа этого, то это говорит об успешном ответе:
+
+![img.png](scrns/jsonrpc_ui_index_200.png)
+
+В иноме случае увидите ошибку:
+
+![img.png](scrns/jsonrpc_ui_index_error.png)
+
+6. Запустите тест-кейсы для проверки работоспособности (можно через IDE, можно через консоль (команды ниже)):
+ 
+Для проверки представления
+ ```
+ python manage.py test jsonrpc_ui.tests.jsonrpc_view_test 
+ ```
+
+![img.png](scrns/jsonrpc_ui_tests.png)
+
+Для проверки метода
+
+ ```
+ python manage.py test jsonrpc_app.tests.jsonprc_method_test 
+ ```
+
+![img.png](scrns/jsonrpc_app_tests.png)
