@@ -82,7 +82,7 @@ class JsonRpcViewTestCase(TestCase):
         mock_call_jsonrpc_method.return_value = {'error': 'Фейковые SSL'}
 
         url: str = reverse('jsonrpc_view')
-        data: Dict[str, str] = {'method': 'auth.check', 'params': '{"username": "test_user"}'}
+        data: Dict[str, str] = {'method': 'auth.check', 'params': '{}'}
         request: HttpResponse = self.factory.post(url, data=data)
 
         response: JsonResponse = self.view.post(request)
