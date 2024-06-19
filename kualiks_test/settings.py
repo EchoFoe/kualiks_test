@@ -1,8 +1,16 @@
+import os
 from pathlib import Path
+
+from dotenv import load_dotenv
+
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-4z4(qtyvv970(h9hvy1=oau&^w7!271!sq1$ri51@w0o2gkmxo'
+SECRET_KEY = os.getenv('SECRET_KEY')
+CLIENT_CERT = os.getenv('CLIENT_2024_TEST_CRT')
+CLIENT_KEY = os.getenv('CLIENT_2024_TEST_KEY')
+TEST_API_URL = os.getenv('TEST_API_URL')
 
 DEBUG = True
 
@@ -16,6 +24,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'jsonrpc_app.apps.JsonrpcAppConfig',
 ]
 
 MIDDLEWARE = [
