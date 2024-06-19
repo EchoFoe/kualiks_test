@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'jsonrpc_app.apps.JsonrpcAppConfig',
+    'jsonrpc_ui.apps.JsonrpcUiConfig',
 ]
 
 MIDDLEWARE = [
